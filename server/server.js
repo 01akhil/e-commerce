@@ -2,6 +2,8 @@ const express=require('express')
 const mongoose=require('mongoose')
 const cookieParser=require('cookie-parser')
 const cors=require('cors')
+const authRouter=require('./routes/auth/auth-routes')
+
 
 mongoose.connect('mongodb+srv://bhadula01:aZxy5vVurjRPPQXh@cluster0.2wvy4.mongodb.net/')
 .then(()=>{
@@ -30,5 +32,5 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
-
+app.use("/api/auth",authRouter);
 app.listen(PORT,()=>console.log(`Server is now listening on ${PORT}`))
