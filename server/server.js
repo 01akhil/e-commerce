@@ -13,7 +13,9 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
-mongoose.connect('mongodb+srv://bhadula01:aZxy5vVurjRPPQXh@cluster0.2wvy4.mongodb.net/')
+require('dotenv').config()
+
+mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
     console.log("mongodb connected");
 })
@@ -25,7 +27,7 @@ const PORT=process.env.PORT || 5000
 
 app.use(
     cors({
-        origin: 'http://localhost:5173',
+        origin:process.env.CLIENT_BASE_URL,
         methods: ['GET', 'POST','DELETE','PUT'],
         allowedHeaders:[
             "Content-Type",
